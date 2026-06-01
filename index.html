@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazon.in — Online Shopping</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav class="nav-main">
+  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <span class="nav-logo-word">amazon</span><span class="nav-logo-in">.in</span>
+  </div>
+  <div class="nav-deliver">
+    <span><i class="fa fa-map-marker-alt"></i> Deliver to</span>
+    <strong>India</strong>
+  </div>
+  <div class="nav-search">
+    <select class="search-category" aria-label="Category">
+      <option>All</option><option>Electronics</option><option>Fashion</option>
+      <option>Kitchen</option><option>Books</option><option>Grocery</option>
+      <option>Sports</option><option>Beauty</option>
+    </select>
+    <input type="text" id="searchInput" placeholder="Search Amazon.in" aria-label="Search"/>
+    <button class="nav-search-btn" onclick="doSearch()"><i class="fa fa-search"></i></button>
+  </div>
+  <div class="nav-account" id="accountBtn" onclick="openSignIn()">
+    <span>Hello, Sign in</span>
+    <strong>Account &amp; Lists <i class="fa fa-caret-down" style="font-size:11px;"></i></strong>
+  </div>
+  <div class="nav-returns" onclick="showToast('Opening your orders...','info')">
+    <span>Returns</span><strong>&amp; Orders</strong>
+  </div>
+  <div class="nav-cart" onclick="openCart()">
+    <span class="cart-badge" id="cartBadge"></span>
+    <i class="fa fa-shopping-cart"></i><strong>Cart</strong>
+  </div>
+</nav>
+<nav class="subnav">
+  <a href="#" class="bold"><i class="fa fa-bars"></i> All</a>
+  <a href="#">Today's Deals</a><a href="#">Customer Service</a><a href="#">Registry</a>
+  <a href="#">Gift Cards</a><a href="#">Sell</a>
+  <a href="#" class="subnav-prime">Prime</a>
+  <a href="#">New Releases</a><a href="#">Books</a><a href="#">Fashion</a>
+  <a href="#">Electronics</a><a href="#">Home &amp; Kitchen</a><a href="#">Sports</a>
+  <a href="#">Automotive</a><a href="#">Grocery</a><a href="#">Toys &amp; Games</a>
+  <a href="#">Health</a><a href="#">Mobiles</a>
+</nav>
+<section class="hero">
+  <div class="hero-track" id="heroTrack">
+    <div class="hero-slide">
+      <img class="hero-bg" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1400&q=80" alt="Sale banner"/>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/3655/3655589.png" alt=""/>Limited Time</span>
+        <h1>Great Indian Sale</h1>
+        <p>Up to 70% off on Electronics, Fashion &amp; more. Deals that won't last!</p>
+        <button class="hero-btn" onclick="showToast('Opening sale deals...','info')">Shop Now <i class="fa fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img class="hero-bg" src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=80" alt="Electronics sale"/>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/785/785116.png" alt=""/>Hot Deals</span>
+        <h1>Electronics Fest</h1>
+        <p>Massive discounts on mobiles, laptops, audio &amp; accessories.</p>
+        <button class="hero-btn" onclick="document.getElementById('electronicsSection').scrollIntoView({behavior:'smooth'})">Shop Electronics <i class="fa fa-bolt"></i></button>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img class="hero-bg" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&q=80" alt="Fashion sale"/>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/1785/1785255.png" alt=""/>New Season</span>
+        <h1>Fashion for Everyone</h1>
+        <p>Trending styles, ethnic wear, footwear &amp; accessories at unbeatable prices.</p>
+        <button class="hero-btn" onclick="document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">Explore Fashion <i class="fa fa-star"></i></button>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img class="hero-bg" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1400&q=80" alt="Prime deals"/>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/1828/1828884.png" alt=""/>Members Only</span>
+        <h1>Prime Exclusive Deals</h1>
+        <p>Unlock early access to the best deals, free delivery &amp; Prime Video.</p>
+        <button class="hero-btn" onclick="openSignIn()">Join Prime <i class="fa fa-crown"></i></button>
+      </div>
+    </div>
+  </div>
+  <button class="hero-arrow prev" onclick="slideHero(-1)">&#10094;</button>
+  <button class="hero-arrow next" onclick="slideHero(1)">&#10095;</button>
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="goToSlide(0)"></button>
+    <button class="hero-dot" onclick="goToSlide(1)"></button>
+    <button class="hero-dot" onclick="goToSlide(2)"></button>
+    <button class="hero-dot" onclick="goToSlide(3)"></button>
+  </div>
+  <div class="hero-fade"></div>
+</section>
+<div class="deals-bar">
+  <span class="deals-bar-label"><i class="fa fa-bolt"></i> Today's Deals</span>
+  <div class="deals-timer">Ends in:&nbsp;
+    <span class="timer-seg" id="tH">08</span><span class="timer-colon">:</span>
+    <span class="timer-seg" id="tM">42</span><span class="timer-colon">:</span>
+    <span class="timer-seg" id="tS">17</span>
+  </div>
+  <a href="#" onclick="showToast('Opening all deals...','info');return false;">See all deals &rsaquo;</a>
+</div>
+<div id="searchResultsBar" class="search-results-bar container"></div>
+<main class="container">
+  <section class="cat-strip-wrap">
+    <div class="cat-strip">
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=100&q=80" alt="Mobiles"/><span>Mobiles</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=100&q=80" alt="Fashion"/><span>Fashion</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=100&q=80" alt="Laptops"/><span>Laptops</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=100&q=80" alt="Home"/><span>Home</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=100&q=80" alt="Books"/><span>Books</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=100&q=80" alt="Gaming"/><span>Gaming</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=100&q=80" alt="Kitchen"/><span>Kitchen</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=100&q=80" alt="Sports"/><span>Sports</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=100&q=80" alt="Beauty"/><span>Beauty</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&q=80" alt="Automotive"/><span>Automotive</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=100&q=80" alt="Grocery"/><span>Grocery</span></div>
+      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=100&q=80" alt="Health"/><span>Health</span></div>
+    </div>
+  </section>
+  <div class="cards-grid">
+    <div class="card" onclick="document.getElementById('electronicsSection').scrollIntoView({behavior:'smooth'})">
+      <h3>Electronics deals</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=200&q=80" alt="Phone"/></div><span>Phones</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Headphones"/></div><span>Audio</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&q=80" alt="Laptop"/></div><span>Laptops</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=200&q=80" alt="Watch"/></div><span>Wearables</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+    <div class="card" onclick="document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">
+      <h3>Fashion for all</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200&q=80" alt="Shirt"/></div><span>Men</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=200&q=80" alt="Kurta"/></div><span>Women</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" alt="Shoes"/></div><span>Shoes</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="Bag"/></div><span>Bags</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+    <div class="card" onclick="document.getElementById('kitchenSection').scrollIntoView({behavior:'smooth'})">
+      <h3>Kitchen &amp; Dining</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1585515320310-259814833e62?w=200&q=80" alt="Cookware"/></div><span>Cookware</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80" alt="Coffee"/></div><span>Coffee</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80" alt="Appliances"/></div><span>Appliances</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=200&q=80" alt="Bottles"/></div><span>Bottles</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+    <div class="card" onclick="showToast('Opening Gaming section...','info')">
+      <h3>Gaming &amp; PCs</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=200&q=80" alt="PS5"/></div><span>Consoles</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=200&q=80" alt="Gaming PC"/></div><span>Gaming PCs</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=200&q=80" alt="Monitor"/></div><span>Monitors</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&q=80" alt="Accessories"/></div><span>Accessories</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+  </div>
+  <section class="carousel-section" id="electronicsSection">
+    <div class="section-header">
+      <h2 class="section-title">Best Sellers in Electronics</h2>
+      <a class="section-see-all" href="#" onclick="showToast('Loading all Electronics...','info');return false;">See all &rsaquo;</a>
+    </div>
+    <div class="carousel" id="carousel1"></div>
+  </section>
+  <div class="ad-banner-row">
+    <div class="ad-banner" onclick="showToast('Opening Flash Sale...','info')">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80" alt="Flash sale"/>
+      <div class="ad-banner-overlay dark-grad">
+        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/3655/3655589.png" alt=""/>Flash Sale</span>
+        <h3>Up to 80% Off</h3>
+        <p>Today only — electronics, gadgets &amp; more</p>
+        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Flash Sale...','info')">Shop Now</button>
+      </div>
+    </div>
+    <div class="ad-banner" onclick="showToast('Opening Festive Offers...','info')">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&q=80" alt="Festive sale"/>
+      <div class="ad-banner-overlay dark-grad">
+        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/2589/2589197.png" alt=""/>Festive Sale</span>
+        <h3>Celebrate &amp; Save</h3>
+        <p>Exclusive discounts on top brands this season</p>
+        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Festive Offers...','info')">Explore Deals</button>
+      </div>
+    </div>
+  </div>
+  <section class="carousel-section" id="fashionSection">
+    <div class="section-header">
+      <h2 class="section-title">Trending — Fashion Picks</h2>
+      <a class="section-see-all" href="#" onclick="showToast('Loading all Fashion...','info');return false;">See all &rsaquo;</a>
+    </div>
+    <div class="carousel" id="carousel2"></div>
+  </section>
+  <div class="ad-banner-wide" onclick="showToast('Opening Prime Video...','info')">
+    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1400&q=80" alt="Prime Video"/>
+    <div class="ad-banner-wide-overlay">
+      <div><h3>Prime Video</h3><p>Watch exclusive shows, movies &amp; live sports — anytime, anywhere</p></div>
+      <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Prime Video...','info')">Start Watching Free</button>
+    </div>
+  </div>
+  <div class="ad-banner-row">
+    <div class="ad-banner" onclick="showToast('Opening Amazon Fresh...','info')">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80" alt="Fresh groceries"/>
+      <div class="ad-banner-overlay dark-grad">
+        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/2553/2553691.png" alt=""/>Amazon Fresh</span>
+        <h3>Groceries in 2 Hours</h3>
+        <p>Fresh fruits, veggies &amp; daily essentials delivered fast</p>
+        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Amazon Fresh...','info')">Shop Groceries</button>
+      </div>
+    </div>
+    <div class="ad-banner" onclick="showToast('Opening Fashion Week Sale...','info')">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" alt="Fashion sale"/>
+      <div class="ad-banner-overlay dark-grad">
+        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/1785/1785255.png" alt=""/>Fashion Week</span>
+        <h3>Style Up to 60% Off</h3>
+        <p>Top brands, latest trends — men, women &amp; kids</p>
+        <button class="ad-cta" onclick="event.stopPropagation();document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">Shop Fashion</button>
+      </div>
+    </div>
+  </div>
+  <section class="carousel-section" id="kitchenSection">
+    <div class="section-header">
+      <h2 class="section-title">Kitchen &amp; Home Essentials</h2>
+      <a class="section-see-all" href="#" onclick="showToast('Loading all Kitchen...','info');return false;">See all &rsaquo;</a>
+    </div>
+    <div class="carousel" id="carousel3"></div>
+  </section>
+  <div class="ad-banner-wide" onclick="showToast('Opening Kindle Unlimited...','info')">
+    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&q=80" alt="Books"/>
+    <div class="ad-banner-wide-overlay">
+      <div><h3>Kindle Unlimited</h3><p>Read millions of ebooks &amp; audiobooks — just ₹169/month</p></div>
+      <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Kindle Unlimited...','info')">Try 30 Days Free</button>
+    </div>
+  </div>
+  <div class="ad-banner-row">
+    <div class="ad-banner" onclick="showToast('Opening Amazon Pay...','info')">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80" alt="Amazon Pay"/>
+      <div class="ad-banner-overlay dark-grad">
+        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/2489/2489756.png" alt=""/>Amazon Pay</span>
+        <h3>Earn Cashback</h3>
+        <p>Pay bills, recharge &amp; transfers — up to 10% cashback</p>
+        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Amazon Pay...','info')">Pay Now</button>
+      </div>
+    </div>
+    <div class="ad-banner" onclick="showToast('Opening Clearance Sale...','info')">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&q=80" alt="Clearance sale"/>
+      <div class="ad-banner-overlay dark-grad">
+        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/1602/1602568.png" alt=""/>Clearance</span>
+        <h3>Last Chance Deals</h3>
+        <p>Overstocked items at rock-bottom prices while stocks last</p>
+        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Clearance Sale...','info')">Grab Deals</button>
+      </div>
+    </div>
+  </div>
+  <div class="cards-grid">
+    <div class="card" onclick="showToast('Opening Health & Beauty...','info')">
+      <h3>Health &amp; Beauty</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Health"/></div><span>Vitamins</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&q=80" alt="Skincare"/></div><span>Skincare</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=200&q=80" alt="Fitness"/></div><span>Fitness</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=200&q=80" alt="Medical"/></div><span>Medical</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+    <div class="card" onclick="showToast('Opening Books...','info')">
+      <h3>Books &amp; Audiobooks</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&q=80" alt="Books"/></div><span>Bestsellers</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&q=80" alt="Library"/></div><span>Audiobooks</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&q=80" alt="Study"/></div><span>Academic</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=200&q=80" alt="Children"/></div><span>Children</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+    <div class="card" onclick="showToast('Opening Sports...','info')">
+      <h3>Sports &amp; Outdoors</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=200&q=80" alt="Gym"/></div><span>Fitness</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=200&q=80" alt="Running"/></div><span>Running</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=200&q=80" alt="Cycling"/></div><span>Cycling</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=200&q=80" alt="Yoga"/></div><span>Yoga</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+    <div class="card" onclick="showToast('Opening Home Decor...','info')">
+      <h3>Refresh Your Home</h3>
+      <div class="card-products">
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=80" alt="Sofa"/></div><span>Furniture</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=200&q=80" alt="Decor"/></div><span>Decor</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1495365200479-c4ed1d35e1aa?w=200&q=80" alt="Bedroom"/></div><span>Bedroom</span></div>
+        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80" alt="Kitchen"/></div><span>Kitchen</span></div>
+      </div>
+      <a class="card-see-more" href="#">See more &rsaquo;</a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</div>
+  <div class="footer-mid">
+    <div class="footer-col">
+      <h4>Get to Know Us</h4>
+      <ul>
+        <li onclick="showToast('Opening Careers...','info')">Careers</li>
+        <li onclick="showToast('Opening Blog...','info')">Blog</li>
+        <li onclick="showToast('Opening About Amazon...','info')">About Amazon</li>
+        <li onclick="showToast('Opening Investor Relations...','info')">Investor Relations</li>
+        <li onclick="showToast('Opening Amazon Devices...','info')">Amazon Devices</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Make Money with Us</h4>
+      <ul>
+        <li onclick="showToast('Opening Seller Central...','info')">Sell on Amazon</li>
+        <li onclick="showToast('Opening Accelerator...','info')">Amazon Accelerator</li>
+        <li onclick="showToast('Opening Global Selling...','info')">Global Selling</li>
+        <li onclick="showToast('Opening Affiliate...','info')">Become an Affiliate</li>
+        <li onclick="showToast('Opening FBA...','info')">Fulfilment by Amazon</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Amazon Payment Products</h4>
+      <ul>
+        <li onclick="showToast('Opening Amazon Pay...','info')">Amazon Pay</li>
+        <li onclick="showToast('Opening UPI...','info')">Amazon Pay UPI</li>
+        <li onclick="showToast('Opening Rewards Card...','info')">Amazon Rewards Visa</li>
+        <li onclick="showToast('Opening Points...','info')">Shop with Points</li>
+        <li onclick="showToast('Opening Balance...','info')">Reload Your Balance</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Let Us Help You</h4>
+      <ul>
+        <li onclick="openSignIn()">Your Account</li>
+        <li onclick="showToast('Opening Returns...','info')">Returns Centre</li>
+        <li onclick="showToast('Opening Protection...','info')">100% Purchase Protection</li>
+        <li onclick="showToast('Opening App...','info')">Amazon App Download</li>
+        <li onclick="showToast('Opening Help...','info')">Help</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo-text">amazon<span>.in</span></div>
+    <div class="footer-links">
+      <a href="#" onclick="showToast('Opening Conditions...','info');return false;">Conditions of Use &amp; Sale</a>
+      <a href="#" onclick="showToast('Opening Privacy...','info');return false;">Privacy Notice</a>
+      <a href="#" onclick="showToast('Opening Ads Notice...','info');return false;">Interest-Based Ads</a>
+    </div>
+    <div>© 1996–2026, Amazon.com, Inc. or its affiliates. All Rights Reserved.</div>
+  </div>
+</footer>
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <span><i class="fa fa-shopping-cart"></i> Your Cart</span>
+    <button onclick="closeCart()">&times;</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total" id="cartTotal"></div>
+    <button class="checkout-btn" onclick="checkout()"><i class="fa fa-lock"></i> Proceed to Checkout</button>
+  </div>
+</aside>
+<div class="modal-overlay" id="productModal" role="dialog">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span style="font-weight:bold;font-size:15px;">Product Details</span>
+      <button class="modal-close" onclick="closeProductModal()">&times;</button>
+    </div>
+    <div class="modal-body"></div>
+  </div>
+</div>
+<div class="signin-modal" id="signinModal" role="dialog">
+  <div class="signin-box">
+    <div class="signin-close-row"><button class="signin-close-btn" onclick="closeSignIn()">&times;</button></div>
+    <div class="signin-logo">amazon<span>.in</span></div>
+    <h2>Sign in</h2>
+    <form onsubmit="handleSignIn(event)">
+      <label for="signinEmail">Email or mobile number</label>
+      <input type="text" id="signinEmail" placeholder="Email or mobile number"/>
+      <label for="signinPass">Password</label>
+      <input type="password" id="signinPass" placeholder="Password"/>
+      <button type="submit" class="signin-submit">Sign in</button>
+    </form>
+    <p style="font-size:11px;color:#555;text-align:center;margin-bottom:12px;">
+      By signing in you agree to Amazon's <a href="#" style="color:#007185;">Conditions of Use</a> and <a href="#" style="color:#007185;">Privacy Notice</a>.
+    </p>
+    <div class="signin-divider">New to Amazon?</div>
+    <div class="signin-new" style="margin-top:10px;">
+      <a href="#" onclick="closeSignIn();showToast('Opening account creation...','info');return false;">Create your Amazon account</a>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="alert"></div>
+<script src="script.js"></script>
+</body>
+</html>
