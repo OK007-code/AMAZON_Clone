@@ -4,406 +4,407 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Amazon.in — Online Shopping</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="tailwind-custom.css"/>
 </head>
-<body>
-<nav class="nav-main">
-  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <span class="nav-logo-word">amazon</span><span class="nav-logo-in">.in</span>
+<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
+<nav class="sticky-nav top-0 bg-gray-900 flex items-center px-3.5 py-2 gap-1 z-50">
+  <div class="flex items-end gap-0.5 border-2 border-transparent px-1.75 py-0.75 rounded cursor-pointer transition-colors hover:border-white flex-shrink-0" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <span class="text-white text-2xl font-black leading-tight">amazon</span><span class="text-orange-400 text-xs font-bold mb-1">.in</span>
   </div>
-  <div class="nav-deliver">
+  <div class="text-gray-300 text-xs border-2 border-transparent px-1.75 py-0.75 rounded cursor-pointer whitespace-nowrap flex-shrink-0 transition-colors hover:border-white leading-relaxed">
     <span><i class="fa fa-map-marker-alt"></i> Deliver to</span>
-    <strong>India</strong>
+    <strong class="block text-white text-sm">India</strong>
   </div>
-  <div class="nav-search">
-    <select class="search-category" aria-label="Category">
+  <div class="flex flex-1 h-10 rounded overflow-hidden min-w-52">
+    <select class="bg-gray-200 border-none px-2 text-xs text-gray-700 cursor-pointer border-r border-gray-400 rounded-l-none min-w-12 outline-none" aria-label="Category">
       <option>All</option><option>Electronics</option><option>Fashion</option>
       <option>Kitchen</option><option>Books</option><option>Grocery</option>
       <option>Sports</option><option>Beauty</option>
     </select>
-    <input type="text" id="searchInput" placeholder="Search Amazon.in" aria-label="Search"/>
-    <button class="nav-search-btn" onclick="doSearch()"><i class="fa fa-search"></i></button>
+    <input type="text" id="searchInput" placeholder="Search Amazon.in" class="flex-1 border-none px-3 text-base outline-none min-w-0" aria-label="Search"/>
+    <button class="bg-orange-400 border-none w-12 text-lg text-gray-900 rounded-r transition-colors hover:bg-orange-500 flex items-center justify-center" onclick="doSearch()"><i class="fa fa-search"></i></button>
   </div>
-  <div class="nav-account" id="accountBtn" onclick="openSignIn()">
+  <div class="text-gray-300 text-xs border-2 border-transparent px-2 py-0.75 rounded cursor-pointer whitespace-nowrap flex-shrink-0 transition-colors hover:border-white leading-relaxed" id="accountBtn" onclick="openSignIn()">
     <span>Hello, Sign in</span>
-    <strong>Account &amp; Lists <i class="fa fa-caret-down" style="font-size:11px;"></i></strong>
+    <strong class="block text-white text-sm">Account &amp; Lists <i class="fa fa-caret-down text-xs"></i></strong>
   </div>
-  <div class="nav-returns" onclick="showToast('Opening your orders...','info')">
-    <span>Returns</span><strong>&amp; Orders</strong>
+  <div class="text-gray-300 text-xs border-2 border-transparent px-2 py-0.75 rounded cursor-pointer whitespace-nowrap flex-shrink-0 transition-colors hover:border-white leading-relaxed" onclick="showToast('Opening your orders...','info')">
+    <span>Returns</span><strong class="block text-white text-sm">&amp; Orders</strong>
   </div>
-  <div class="nav-cart" onclick="openCart()">
-    <span class="cart-badge" id="cartBadge"></span>
-    <i class="fa fa-shopping-cart"></i><strong>Cart</strong>
+  <div class="flex items-center gap-1 text-white border-2 border-transparent px-2 py-0.75 rounded cursor-pointer font-bold text-sm relative flex-shrink-0 transition-colors hover:border-white" onclick="openCart()">
+    <span class="absolute top-0 left-6 text-orange-400 font-black text-base min-w-4.5 text-center" id="cartBadge"></span>
+    <i class="fa fa-shopping-cart text-2xl"></i><strong>Cart</strong>
   </div>
 </nav>
-<nav class="subnav">
-  <a href="#" class="bold"><i class="fa fa-bars"></i> All</a>
-  <a href="#">Today's Deals</a><a href="#">Customer Service</a><a href="#">Registry</a>
-  <a href="#">Gift Cards</a><a href="#">Sell</a>
-  <a href="#" class="subnav-prime">Prime</a>
-  <a href="#">New Releases</a><a href="#">Books</a><a href="#">Fashion</a>
-  <a href="#">Electronics</a><a href="#">Home &amp; Kitchen</a><a href="#">Sports</a>
-  <a href="#">Automotive</a><a href="#">Grocery</a><a href="#">Toys &amp; Games</a>
-  <a href="#">Health</a><a href="#">Mobiles</a>
+<nav class="sticky-subnav top-14 bg-gray-800 flex items-center px-2.5 overflow-x-auto whitespace-nowrap z-40">
+  <a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white font-bold"><i class="fa fa-bars"></i> All</a>
+  <a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Today's Deals</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Customer Service</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Registry</a>
+  <a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Gift Cards</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Sell</a>
+  <a href="#" class="text-orange-400 text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white font-bold">Prime</a>
+  <a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">New Releases</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Books</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Fashion</a>
+  <a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Electronics</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Home &amp; Kitchen</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Sports</a>
+  <a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Automotive</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Grocery</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Toys &amp; Games</a>
+  <a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Health</a><a href="#" class="text-white text-sm px-2.5 py-2 inline-block border border-transparent rounded transition-colors hover:border-white">Mobiles</a>
 </nav>
-<section class="hero">
+<section class="relative overflow-hidden bg-black">
   <div class="hero-track" id="heroTrack">
     <div class="hero-slide">
       <img class="hero-bg" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1400&q=80" alt="Sale banner"/>
       <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/3655/3655589.png" alt=""/>Limited Time</span>
-        <h1>Great Indian Sale</h1>
-        <p>Up to 70% off on Electronics, Fashion &amp; more. Deals that won't last!</p>
-        <button class="hero-btn" onclick="showToast('Opening sale deals...','info')">Shop Now <i class="fa fa-arrow-right"></i></button>
+      <div class="relative z-10 px-16 text-white h-full flex flex-col justify-center max-w-2xl">
+        <span class="bg-orange-400 text-gray-900 text-xs font-bold px-2.5 py-0.75 rounded inline-flex items-center gap-1.5 mb-3.5 tracking-widest uppercase w-fit"><img src="https://cdn-icons-png.flaticon.com/32/3655/3655589.png" alt="" class="w-4 h-4"/>Limited Time</span>
+        <h1 class="text-5xl font-black leading-tight drop-shadow-lg">Great Indian Sale</h1>
+        <p class="text-base my-3 opacity-92 drop-shadow leading-relaxed">Up to 70% off on Electronics, Fashion &amp; more. Deals that won't last!</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-8 py-3.25 text-base font-bold rounded transition-colors hover:bg-orange-500 hover:translate-y-[-1px] inline-flex items-center gap-2 w-fit" onclick="showToast('Opening sale deals...','info')">Shop Now <i class="fa fa-arrow-right"></i></button>
       </div>
     </div>
     <div class="hero-slide">
       <img class="hero-bg" src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=80" alt="Electronics sale"/>
       <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/785/785116.png" alt=""/>Hot Deals</span>
-        <h1>Electronics Fest</h1>
-        <p>Massive discounts on mobiles, laptops, audio &amp; accessories.</p>
-        <button class="hero-btn" onclick="document.getElementById('electronicsSection').scrollIntoView({behavior:'smooth'})">Shop Electronics <i class="fa fa-bolt"></i></button>
+      <div class="relative z-10 px-16 text-white h-full flex flex-col justify-center max-w-2xl">
+        <span class="bg-orange-400 text-gray-900 text-xs font-bold px-2.5 py-0.75 rounded inline-flex items-center gap-1.5 mb-3.5 tracking-widest uppercase w-fit"><img src="https://cdn-icons-png.flaticon.com/32/785/785116.png" alt="" class="w-4 h-4"/>Hot Deals</span>
+        <h1 class="text-5xl font-black leading-tight drop-shadow-lg">Electronics Fest</h1>
+        <p class="text-base my-3 opacity-92 drop-shadow leading-relaxed">Massive discounts on mobiles, laptops, audio &amp; accessories.</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-8 py-3.25 text-base font-bold rounded transition-colors hover:bg-orange-500 hover:translate-y-[-1px] inline-flex items-center gap-2 w-fit" onclick="document.getElementById('electronicsSection').scrollIntoView({behavior:'smooth'})">Shop Electronics <i class="fa fa-bolt"></i></button>
       </div>
     </div>
     <div class="hero-slide">
       <img class="hero-bg" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&q=80" alt="Fashion sale"/>
       <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/1785/1785255.png" alt=""/>New Season</span>
-        <h1>Fashion for Everyone</h1>
-        <p>Trending styles, ethnic wear, footwear &amp; accessories at unbeatable prices.</p>
-        <button class="hero-btn" onclick="document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">Explore Fashion <i class="fa fa-star"></i></button>
+      <div class="relative z-10 px-16 text-white h-full flex flex-col justify-center max-w-2xl">
+        <span class="bg-orange-400 text-gray-900 text-xs font-bold px-2.5 py-0.75 rounded inline-flex items-center gap-1.5 mb-3.5 tracking-widest uppercase w-fit"><img src="https://cdn-icons-png.flaticon.com/32/1785/1785255.png" alt="" class="w-4 h-4"/>New Season</span>
+        <h1 class="text-5xl font-black leading-tight drop-shadow-lg">Fashion for Everyone</h1>
+        <p class="text-base my-3 opacity-92 drop-shadow leading-relaxed">Trending styles, ethnic wear, footwear &amp; accessories at unbeatable prices.</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-8 py-3.25 text-base font-bold rounded transition-colors hover:bg-orange-500 hover:translate-y-[-1px] inline-flex items-center gap-2 w-fit" onclick="document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">Explore Fashion <i class="fa fa-star"></i></button>
       </div>
     </div>
     <div class="hero-slide">
       <img class="hero-bg" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1400&q=80" alt="Prime deals"/>
       <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="hero-tag"><img src="https://cdn-icons-png.flaticon.com/32/1828/1828884.png" alt=""/>Members Only</span>
-        <h1>Prime Exclusive Deals</h1>
-        <p>Unlock early access to the best deals, free delivery &amp; Prime Video.</p>
-        <button class="hero-btn" onclick="openSignIn()">Join Prime <i class="fa fa-crown"></i></button>
+      <div class="relative z-10 px-16 text-white h-full flex flex-col justify-center max-w-2xl">
+        <span class="bg-orange-400 text-gray-900 text-xs font-bold px-2.5 py-0.75 rounded inline-flex items-center gap-1.5 mb-3.5 tracking-widest uppercase w-fit"><img src="https://cdn-icons-png.flaticon.com/32/1828/1828884.png" alt="" class="w-4 h-4"/>Members Only</span>
+        <h1 class="text-5xl font-black leading-tight drop-shadow-lg">Prime Exclusive Deals</h1>
+        <p class="text-base my-3 opacity-92 drop-shadow leading-relaxed">Unlock early access to the best deals, free delivery &amp; Prime Video.</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-8 py-3.25 text-base font-bold rounded transition-colors hover:bg-orange-500 hover:translate-y-[-1px] inline-flex items-center gap-2 w-fit" onclick="openSignIn()">Join Prime <i class="fa fa-crown"></i></button>
       </div>
     </div>
   </div>
-  <button class="hero-arrow prev" onclick="slideHero(-1)">&#10094;</button>
-  <button class="hero-arrow next" onclick="slideHero(1)">&#10095;</button>
-  <div class="hero-dots">
-    <button class="hero-dot active" onclick="goToSlide(0)"></button>
-    <button class="hero-dot" onclick="goToSlide(1)"></button>
-    <button class="hero-dot" onclick="goToSlide(2)"></button>
-    <button class="hero-dot" onclick="goToSlide(3)"></button>
+  <button class="absolute top-1/2 -translate-y-1/2 bg-white bg-opacity-88 border-none w-10 h-20 text-lg z-5 transition-all hover:bg-opacity-100 hover:w-11.5 flex items-center justify-center rounded-r left-0" onclick="slideHero(-1)">&#10094;</button>
+  <button class="absolute top-1/2 -translate-y-1/2 bg-white bg-opacity-88 border-none w-10 h-20 text-lg z-5 transition-all hover:bg-opacity-100 hover:w-11.5 flex items-center justify-center rounded-l right-0" onclick="slideHero(1)">&#10095;</button>
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.75 z-5">
+    <button class="w-2.25 h-2.25 rounded-full bg-white bg-opacity-40 border-none transition-all hover:bg-opacity-100 hover:scale-135 cursor-pointer active:bg-white" onclick="goToSlide(0)"></button>
+    <button class="w-2.25 h-2.25 rounded-full bg-white bg-opacity-40 border-none transition-all hover:bg-opacity-100 hover:scale-135 cursor-pointer" onclick="goToSlide(1)"></button>
+    <button class="w-2.25 h-2.25 rounded-full bg-white bg-opacity-40 border-none transition-all hover:bg-opacity-100 hover:scale-135 cursor-pointer" onclick="goToSlide(2)"></button>
+    <button class="w-2.25 h-2.25 rounded-full bg-white bg-opacity-40 border-none transition-all hover:bg-opacity-100 hover:scale-135 cursor-pointer" onclick="goToSlide(3)"></button>
   </div>
   <div class="hero-fade"></div>
 </section>
-<div class="deals-bar">
-  <span class="deals-bar-label"><i class="fa fa-bolt"></i> Today's Deals</span>
-  <div class="deals-timer">Ends in:&nbsp;
-    <span class="timer-seg" id="tH">08</span><span class="timer-colon">:</span>
-    <span class="timer-seg" id="tM">42</span><span class="timer-colon">:</span>
-    <span class="timer-seg" id="tS">17</span>
+<div class="bg-white border-b-2 border-orange-400 px-5 py-2.5 flex items-center gap-4.5 flex-wrap">
+  <span class="text-lg font-black flex items-center gap-2"><i class="fa fa-bolt text-orange-400"></i> Today's Deals</span>
+  <div class="flex gap-1 items-center text-xs text-gray-600">Ends in:&nbsp;
+    <span class="bg-gray-900 text-white px-2 py-0.75 rounded font-bold text-base tabular-nums min-w-8.5 text-center" id="tH">08</span><span class="font-bold text-base">:</span>
+    <span class="bg-gray-900 text-white px-2 py-0.75 rounded font-bold text-base tabular-nums min-w-8.5 text-center" id="tM">42</span><span class="font-bold text-base">:</span>
+    <span class="bg-gray-900 text-white px-2 py-0.75 rounded font-bold text-base tabular-nums min-w-8.5 text-center" id="tS">17</span>
   </div>
-  <a href="#" onclick="showToast('Opening all deals...','info');return false;">See all deals &rsaquo;</a>
+  <a href="#" class="text-teal-700 text-xs ml-auto" onclick="showToast('Opening all deals...','info');return false;">See all deals &rsaquo;</a>
 </div>
-<div id="searchResultsBar" class="search-results-bar container"></div>
-<main class="container">
-  <section class="cat-strip-wrap">
-    <div class="cat-strip">
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=100&q=80" alt="Mobiles"/><span>Mobiles</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=100&q=80" alt="Fashion"/><span>Fashion</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=100&q=80" alt="Laptops"/><span>Laptops</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=100&q=80" alt="Home"/><span>Home</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=100&q=80" alt="Books"/><span>Books</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=100&q=80" alt="Gaming"/><span>Gaming</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=100&q=80" alt="Kitchen"/><span>Kitchen</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=100&q=80" alt="Sports"/><span>Sports</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=100&q=80" alt="Beauty"/><span>Beauty</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&q=80" alt="Automotive"/><span>Automotive</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=100&q=80" alt="Grocery"/><span>Grocery</span></div>
-      <div class="cat-item"><img class="cat-icon-img" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=100&q=80" alt="Health"/><span>Health</span></div>
+<div id="searchResultsBar" class="bg-white border-b border-gray-300 px-3.5 py-2.5 text-xs hidden max-w-6xl mx-auto"></div>
+<main class="max-w-6xl mx-auto px-3.5">
+  <section class="my-3.5 mb-1">
+    <div class="cat-strip flex gap-2.5 overflow-x-auto pb-1.5">
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=100&q=80" alt="Mobiles"/><span class="text-xs font-bold text-gray-900">Mobiles</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=100&q=80" alt="Fashion"/><span class="text-xs font-bold text-gray-900">Fashion</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=100&q=80" alt="Laptops"/><span class="text-xs font-bold text-gray-900">Laptops</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=100&q=80" alt="Home"/><span class="text-xs font-bold text-gray-900">Home</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=100&q=80" alt="Books"/><span class="text-xs font-bold text-gray-900">Books</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=100&q=80" alt="Gaming"/><span class="text-xs font-bold text-gray-900">Gaming</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=100&q=80" alt="Kitchen"/><span class="text-xs font-bold text-gray-900">Kitchen</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=100&q=80" alt="Sports"/><span class="text-xs font-bold text-gray-900">Sports</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=100&q=80" alt="Beauty"/><span class="text-xs font-bold text-gray-900">Beauty</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&q=80" alt="Automotive"/><span class="text-xs font-bold text-gray-900">Automotive</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=100&q=80" alt="Grocery"/><span class="text-xs font-bold text-gray-900">Grocery</span></div>
+      <div class="bg-white rounded px-3.5 py-2.5 text-center cursor-pointer min-w-24 border-2 border-transparent transition-all hover:border-orange-400 hover:shadow-md hover:translate-y-[-2px] flex-shrink-0"><img class="w-12 h-12 object-cover rounded-full mx-auto mb-1.5" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=100&q=80" alt="Health"/><span class="text-xs font-bold text-gray-900">Health</span></div>
     </div>
   </section>
-  <div class="cards-grid">
-    <div class="card" onclick="document.getElementById('electronicsSection').scrollIntoView({behavior:'smooth'})">
-      <h3>Electronics deals</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=200&q=80" alt="Phone"/></div><span>Phones</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Headphones"/></div><span>Audio</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&q=80" alt="Laptop"/></div><span>Laptops</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=200&q=80" alt="Watch"/></div><span>Wearables</span></div>
+  <div class="grid grid-cols-4 gap-3 my-3">
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="document.getElementById('electronicsSection').scrollIntoView({behavior:'smooth'})">
+      <h3 class="text-base font-black mb-3">Electronics deals</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=200&q=80" alt="Phone" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Phones</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Headphones" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Audio</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&q=80" alt="Laptop" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Laptops</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=200&q=80" alt="Watch" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Wearables</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
-    <div class="card" onclick="document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">
-      <h3>Fashion for all</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200&q=80" alt="Shirt"/></div><span>Men</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=200&q=80" alt="Kurta"/></div><span>Women</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" alt="Shoes"/></div><span>Shoes</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="Bag"/></div><span>Bags</span></div>
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">
+      <h3 class="text-base font-black mb-3">Fashion for all</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200&q=80" alt="Shirt" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Men</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=200&q=80" alt="Kurta" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Women</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" alt="Shoes" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Shoes</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="Bag" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Bags</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
-    <div class="card" onclick="document.getElementById('kitchenSection').scrollIntoView({behavior:'smooth'})">
-      <h3>Kitchen &amp; Dining</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=200&q=80" alt="Cookware"/></div><span>Cookware</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80" alt="Coffee"/></div><span>Coffee</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80" alt="Appliances"/></div><span>Appliances</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=200&q=80" alt="Bottles"/></div><span>Bottles</span></div>
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="document.getElementById('kitchenSection').scrollIntoView({behavior:'smooth'})">
+      <h3 class="text-base font-black mb-3">Kitchen &amp; Dining</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=200&q=80" alt="Cookware" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Cookware</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80" alt="Coffee" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Coffee</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80" alt="Appliances" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Appliances</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=200&q=80" alt="Bottles" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Bottles</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
-    <div class="card" onclick="showToast('Opening Gaming section...','info')">
-      <h3>Gaming &amp; PCs</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=200&q=80" alt="PS5"/></div><span>Consoles</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=200&q=80" alt="Gaming PC"/></div><span>Gaming PCs</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?w=200&q=80" alt="Monitor"/></div><span>Monitors</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&q=80" alt="Accessories"/></div><span>Accessories</span></div>
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="showToast('Opening Gaming section...','info')">
+      <h3 class="text-base font-black mb-3">Gaming &amp; PCs</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=200&q=80" alt="PS5" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Consoles</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=200&q=80" alt="Gaming PC" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Gaming PCs</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?w=200&q=80" alt="Monitor" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Monitors</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&q=80" alt="Accessories" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Accessories</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
   </div>
-  <section class="carousel-section" id="electronicsSection">
-    <div class="section-header">
-      <h2 class="section-title">Best Sellers in Electronics</h2>
-      <a class="section-see-all" href="#" onclick="showToast('Loading all Electronics...','info');return false;">See all &rsaquo;</a>
+  <section class="bg-white rounded p-4.5 mb-3 border border-gray-300" id="electronicsSection">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-xl font-black">Best Sellers in Electronics</h2>
+      <a class="text-teal-700 text-xs" href="#" onclick="showToast('Loading all Electronics...','info');return false;">See all &rsaquo;</a>
     </div>
-    <div class="carousel" id="carousel1"></div>
+    <div class="carousel flex gap-3 overflow-x-auto pb-1.5 scroll-smooth" id="carousel1"></div>
   </section>
-  <div class="ad-banner-row">
-    <div class="ad-banner" onclick="showToast('Opening Flash Sale...','info')">
-      <img class="ad-bg" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80" alt="Flash sale"/>
-      <div class="ad-banner-overlay dark-grad">
-        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/3655/3655589.png" alt=""/>Flash Sale</span>
-        <h3>Up to 80% Off</h3>
-        <p>Today only — electronics, gadgets &amp; more</p>
-        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Flash Sale...','info')">Shop Now</button>
+  <div class="grid grid-cols-2 gap-3 mb-3">
+    <div class="rounded-lg overflow-hidden relative cursor-pointer transition-transform hover:translate-y-[-3px] hover:shadow-lg h-52" onclick="showToast('Opening Flash Sale...','info')">
+      <img class="w-full h-full object-cover display-block transition-transform hover:scale-103" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80" alt="Flash sale"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/20 to-black/5 flex flex-col justify-center p-7 text-white">
+        <span class="bg-red-600 text-white text-xs font-black px-2 py-0.75 rounded leading-normal tracking-tight uppercase inline-flex items-center gap-1.25 mb-2 w-fit"><img src="https://cdn-icons-png.flaticon.com/32/3655/3655589.png" alt="" class="w-3.5 h-3.5"/>Flash Sale</span>
+        <h3 class="text-2xl font-black leading-tight drop-shadow-md">Up to 80% Off</h3>
+        <p class="text-sm mt-1 opacity-90">Today only — electronics, gadgets &amp; more</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm mt-3 w-fit cursor-pointer transition-colors hover:bg-orange-500" onclick="event.stopPropagation();showToast('Opening Flash Sale...','info')">Shop Now</button>
       </div>
     </div>
-    <div class="ad-banner" onclick="showToast('Opening Festive Offers...','info')">
-      <img class="ad-bg" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&q=80" alt="Festive sale"/>
-      <div class="ad-banner-overlay dark-grad">
-        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/2589/2589197.png" alt=""/>Festive Sale</span>
-        <h3>Celebrate &amp; Save</h3>
-        <p>Exclusive discounts on top brands this season</p>
-        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Festive Offers...','info')">Explore Deals</button>
+    <div class="rounded-lg overflow-hidden relative cursor-pointer transition-transform hover:translate-y-[-3px] hover:shadow-lg h-52" onclick="showToast('Opening Festive Offers...','info')">
+      <img class="w-full h-full object-cover display-block transition-transform hover:scale-103" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&q=80" alt="Festive sale"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/20 to-black/5 flex flex-col justify-center p-7 text-white">
+        <span class="bg-red-600 text-white text-xs font-black px-2 py-0.75 rounded leading-normal tracking-tight uppercase inline-flex items-center gap-1.25 mb-2 w-fit"><img src="https://cdn-icons-png.flaticon.com/32/2589/2589197.png" alt="" class="w-3.5 h-3.5"/>Festive Sale</span>
+        <h3 class="text-2xl font-black leading-tight drop-shadow-md">Celebrate &amp; Save</h3>
+        <p class="text-sm mt-1 opacity-90">Exclusive discounts on top brands this season</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm mt-3 w-fit cursor-pointer transition-colors hover:bg-orange-500" onclick="event.stopPropagation();showToast('Opening Festive Offers...','info')">Explore Deals</button>
       </div>
     </div>
   </div>
-  <section class="carousel-section" id="fashionSection">
-    <div class="section-header">
-      <h2 class="section-title">Trending — Fashion Picks</h2>
-      <a class="section-see-all" href="#" onclick="showToast('Loading all Fashion...','info');return false;">See all &rsaquo;</a>
+  <section class="bg-white rounded p-4.5 mb-3 border border-gray-300" id="fashionSection">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-xl font-black">Trending — Fashion Picks</h2>
+      <a class="text-teal-700 text-xs" href="#" onclick="showToast('Loading all Fashion...','info');return false;">See all &rsaquo;</a>
     </div>
-    <div class="carousel" id="carousel2"></div>
+    <div class="carousel flex gap-3 overflow-x-auto pb-1.5 scroll-smooth" id="carousel2"></div>
   </section>
-  <div class="ad-banner-wide" onclick="showToast('Opening Prime Video...','info')">
-    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1400&q=80" alt="Prime Video"/>
-    <div class="ad-banner-wide-overlay">
-      <div><h3>Prime Video</h3><p>Watch exclusive shows, movies &amp; live sports — anytime, anywhere</p></div>
-      <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Prime Video...','info')">Start Watching Free</button>
+  <div class="rounded-lg overflow-hidden relative cursor-pointer h-40 mb-3 transition-shadow hover:shadow-lg" onclick="showToast('Opening Prime Video...','info')">
+    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1400&q=80" alt="Prime Video" class="w-full h-full object-cover display-block"/>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/10 flex items-center p-10 gap-7.5 text-white">
+      <div><h3 class="text-3xl font-black drop-shadow-md">Prime Video</h3><p class="text-base opacity-90">Watch exclusive shows, movies &amp; live sports — anytime, anywhere</p></div>
+      <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm cursor-pointer transition-colors hover:bg-orange-500 w-fit h-fit" onclick="event.stopPropagation();showToast('Opening Prime Video...','info')">Start Watching Free</button>
     </div>
   </div>
-  <div class="ad-banner-row">
-    <div class="ad-banner" onclick="showToast('Opening Amazon Fresh...','info')">
-      <img class="ad-bg" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80" alt="Fresh groceries"/>
-      <div class="ad-banner-overlay dark-grad">
-        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/2553/2553691.png" alt=""/>Amazon Fresh</span>
-        <h3>Groceries in 2 Hours</h3>
-        <p>Fresh fruits, veggies &amp; daily essentials delivered fast</p>
-        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Amazon Fresh...','info')">Shop Groceries</button>
+  <div class="grid grid-cols-2 gap-3 mb-3">
+    <div class="rounded-lg overflow-hidden relative cursor-pointer transition-transform hover:translate-y-[-3px] hover:shadow-lg h-52" onclick="showToast('Opening Amazon Fresh...','info')">
+      <img class="w-full h-full object-cover display-block" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80" alt="Fresh groceries"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/20 to-black/5 flex flex-col justify-center p-7 text-white">
+        <span class="bg-red-600 text-white text-xs font-black px-2 py-0.75 rounded leading-normal tracking-tight uppercase inline-flex items-center gap-1.25 mb-2 w-fit"><img src="https://cdn-icons-png.flaticon.com/32/2553/2553691.png" alt="" class="w-3.5 h-3.5"/>Amazon Fresh</span>
+        <h3 class="text-2xl font-black leading-tight drop-shadow-md">Groceries in 2 Hours</h3>
+        <p class="text-sm mt-1 opacity-90">Fresh fruits, veggies &amp; daily essentials delivered fast</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm mt-3 w-fit cursor-pointer transition-colors hover:bg-orange-500" onclick="event.stopPropagation();showToast('Opening Amazon Fresh...','info')">Shop Groceries</button>
       </div>
     </div>
-    <div class="ad-banner" onclick="showToast('Opening Fashion Week Sale...','info')">
-      <img class="ad-bg" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" alt="Fashion sale"/>
-      <div class="ad-banner-overlay dark-grad">
-        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/1785/1785255.png" alt=""/>Fashion Week</span>
-        <h3>Style Up to 60% Off</h3>
-        <p>Top brands, latest trends — men, women &amp; kids</p>
-        <button class="ad-cta" onclick="event.stopPropagation();document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">Shop Fashion</button>
+    <div class="rounded-lg overflow-hidden relative cursor-pointer transition-transform hover:translate-y-[-3px] hover:shadow-lg h-52" onclick="showToast('Opening Fashion Week Sale...','info')">
+      <img class="w-full h-full object-cover display-block" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" alt="Fashion sale"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/20 to-black/5 flex flex-col justify-center p-7 text-white">
+        <span class="bg-red-600 text-white text-xs font-black px-2 py-0.75 rounded leading-normal tracking-tight uppercase inline-flex items-center gap-1.25 mb-2 w-fit"><img src="https://cdn-icons-png.flaticon.com/32/1785/1785255.png" alt="" class="w-3.5 h-3.5"/>Fashion Week</span>
+        <h3 class="text-2xl font-black leading-tight drop-shadow-md">Style Up to 60% Off</h3>
+        <p class="text-sm mt-1 opacity-90">Top brands, latest trends — men, women &amp; kids</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm mt-3 w-fit cursor-pointer transition-colors hover:bg-orange-500" onclick="event.stopPropagation();document.getElementById('fashionSection').scrollIntoView({behavior:'smooth'})">Shop Fashion</button>
       </div>
     </div>
   </div>
-  <section class="carousel-section" id="kitchenSection">
-    <div class="section-header">
-      <h2 class="section-title">Kitchen &amp; Home Essentials</h2>
-      <a class="section-see-all" href="#" onclick="showToast('Loading all Kitchen...','info');return false;">See all &rsaquo;</a>
+  <section class="bg-white rounded p-4.5 mb-3 border border-gray-300" id="kitchenSection">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-xl font-black">Kitchen &amp; Home Essentials</h2>
+      <a class="text-teal-700 text-xs" href="#" onclick="showToast('Loading all Kitchen...','info');return false;">See all &rsaquo;</a>
     </div>
-    <div class="carousel" id="carousel3"></div>
+    <div class="carousel flex gap-3 overflow-x-auto pb-1.5 scroll-smooth" id="carousel3"></div>
   </section>
-  <div class="ad-banner-wide" onclick="showToast('Opening Kindle Unlimited...','info')">
-    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&q=80" alt="Books"/>
-    <div class="ad-banner-wide-overlay">
-      <div><h3>Kindle Unlimited</h3><p>Read millions of ebooks &amp; audiobooks — just ₹169/month</p></div>
-      <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Kindle Unlimited...','info')">Try 30 Days Free</button>
+  <div class="rounded-lg overflow-hidden relative cursor-pointer h-40 mb-3 transition-shadow hover:shadow-lg" onclick="showToast('Opening Kindle Unlimited...','info')">
+    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&q=80" alt="Books" class="w-full h-full object-cover display-block"/>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/10 flex items-center p-10 gap-7.5 text-white">
+      <div><h3 class="text-3xl font-black drop-shadow-md">Kindle Unlimited</h3><p class="text-base opacity-90">Read millions of ebooks &amp; audiobooks — just ₹169/month</p></div>
+      <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm cursor-pointer transition-colors hover:bg-orange-500 w-fit h-fit" onclick="event.stopPropagation();showToast('Opening Kindle Unlimited...','info')">Try 30 Days Free</button>
     </div>
   </div>
-  <div class="ad-banner-row">
-    <div class="ad-banner" onclick="showToast('Opening Amazon Pay...','info')">
-      <img class="ad-bg" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80" alt="Amazon Pay"/>
-      <div class="ad-banner-overlay dark-grad">
-        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/2489/2489756.png" alt=""/>Amazon Pay</span>
-        <h3>Earn Cashback</h3>
-        <p>Pay bills, recharge &amp; transfers — up to 10% cashback</p>
-        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Amazon Pay...','info')">Pay Now</button>
+  <div class="grid grid-cols-2 gap-3 mb-3">
+    <div class="rounded-lg overflow-hidden relative cursor-pointer transition-transform hover:translate-y-[-3px] hover:shadow-lg h-52" onclick="showToast('Opening Amazon Pay...','info')">
+      <img class="w-full h-full object-cover display-block" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80" alt="Amazon Pay"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/20 to-black/5 flex flex-col justify-center p-7 text-white">
+        <span class="bg-red-600 text-white text-xs font-black px-2 py-0.75 rounded leading-normal tracking-tight uppercase inline-flex items-center gap-1.25 mb-2 w-fit"><img src="https://cdn-icons-png.flaticon.com/32/2489/2489756.png" alt="" class="w-3.5 h-3.5"/>Amazon Pay</span>
+        <h3 class="text-2xl font-black leading-tight drop-shadow-md">Earn Cashback</h3>
+        <p class="text-sm mt-1 opacity-90">Pay bills, recharge &amp; transfers — up to 10% cashback</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm mt-3 w-fit cursor-pointer transition-colors hover:bg-orange-500" onclick="event.stopPropagation();showToast('Opening Amazon Pay...','info')">Pay Now</button>
       </div>
     </div>
-    <div class="ad-banner" onclick="showToast('Opening Clearance Sale...','info')">
-      <img class="ad-bg" src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&q=80" alt="Clearance sale"/>
-      <div class="ad-banner-overlay dark-grad">
-        <span class="ad-tag"><img src="https://cdn-icons-png.flaticon.com/32/1602/1602568.png" alt=""/>Clearance</span>
-        <h3>Last Chance Deals</h3>
-        <p>Overstocked items at rock-bottom prices while stocks last</p>
-        <button class="ad-cta" onclick="event.stopPropagation();showToast('Opening Clearance Sale...','info')">Grab Deals</button>
+    <div class="rounded-lg overflow-hidden relative cursor-pointer transition-transform hover:translate-y-[-3px] hover:shadow-lg h-52" onclick="showToast('Opening Clearance Sale...','info')">
+      <img class="w-full h-full object-cover display-block" src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800&q=80" alt="Clearance sale"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/20 to-black/5 flex flex-col justify-center p-7 text-white">
+        <span class="bg-red-600 text-white text-xs font-black px-2 py-0.75 rounded leading-normal tracking-tight uppercase inline-flex items-center gap-1.25 mb-2 w-fit"><img src="https://cdn-icons-png.flaticon.com/32/1602/1602568.png" alt="" class="w-3.5 h-3.5"/>Clearance</span>
+        <h3 class="text-2xl font-black leading-tight drop-shadow-md">Last Chance Deals</h3>
+        <p class="text-sm mt-1 opacity-90">Overstocked items at rock-bottom prices while stocks last</p>
+        <button class="bg-orange-400 text-gray-900 border-none px-5 rounded font-bold text-sm mt-3 w-fit cursor-pointer transition-colors hover:bg-orange-500" onclick="event.stopPropagation();showToast('Opening Clearance Sale...','info')">Grab Deals</button>
       </div>
     </div>
   </div>
-  <div class="cards-grid">
-    <div class="card" onclick="showToast('Opening Health & Beauty...','info')">
-      <h3>Health &amp; Beauty</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Health"/></div><span>Vitamins</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&q=80" alt="Skincare"/></div><span>Skincare</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=200&q=80" alt="Fitness"/></div><span>Fitness</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=200&q=80" alt="Medical"/></div><span>Medical</span></div>
+  <div class="grid grid-cols-4 gap-3 my-3">
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="showToast('Opening Health & Beauty...','info')">
+      <h3 class="text-base font-black mb-3">Health &amp; Beauty</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Health" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Vitamins</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&q=80" alt="Skincare" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Skincare</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=200&q=80" alt="Fitness" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Fitness</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=200&q=80" alt="Medical" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Medical</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
-    <div class="card" onclick="showToast('Opening Books...','info')">
-      <h3>Books &amp; Audiobooks</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&q=80" alt="Books"/></div><span>Bestsellers</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&q=80" alt="Library"/></div><span>Audiobooks</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&q=80" alt="Study"/></div><span>Academic</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=200&q=80" alt="Children"/></div><span>Children</span></div>
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="showToast('Opening Books...','info')">
+      <h3 class="text-base font-black mb-3">Books &amp; Audiobooks</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&q=80" alt="Books" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Bestsellers</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&q=80" alt="Library" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Audiobooks</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&q=80" alt="Study" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Academic</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=200&q=80" alt="Children" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Children</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
-    <div class="card" onclick="showToast('Opening Sports...','info')">
-      <h3>Sports &amp; Outdoors</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=200&q=80" alt="Gym"/></div><span>Fitness</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=200&q=80" alt="Running"/></div><span>Running</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=200&q=80" alt="Cycling"/></div><span>Cycling</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=200&q=80" alt="Yoga"/></div><span>Yoga</span></div>
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="showToast('Opening Sports...','info')">
+      <h3 class="text-base font-black mb-3">Sports &amp; Outdoors</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=200&q=80" alt="Gym" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Fitness</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=200&q=80" alt="Running" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Running</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=200&q=80" alt="Cycling" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Cycling</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=200&q=80" alt="Yoga" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Yoga</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
-    <div class="card" onclick="showToast('Opening Home Decor...','info')">
-      <h3>Refresh Your Home</h3>
-      <div class="card-products">
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=80" alt="Sofa"/></div><span>Furniture</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=200&q=80" alt="Decor"/></div><span>Decor</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1495365200479-c4ed1d35e1aa?w=200&q=80" alt="Bedroom"/></div><span>Bedroom</span></div>
-        <div class="card-product"><div class="card-product-img"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80" alt="Kitchen"/></div><span>Kitchen</span></div>
+    <div class="bg-white p-4 rounded cursor-pointer transition-shadow hover:shadow-md hover:border-gray-300 border border-transparent" onclick="showToast('Opening Home Decor...','info')">
+      <h3 class="text-base font-black mb-3">Refresh Your Home</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=80" alt="Sofa" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Furniture</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&q=80" alt="Decor" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Decor</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1495365200479-c4ed1d35e1aa?w=200&q=80" alt="Bedroom" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Bedroom</span></div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer"><div class="w-full h-24 rounded-sm overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80" alt="Kitchen" class="w-full h-full object-cover"/></div><span class="text-xs text-gray-600 text-center">Kitchen</span></div>
       </div>
-      <a class="card-see-more" href="#">See more &rsaquo;</a>
+      <a class="text-teal-700 text-xs block mt-2.5" href="#">See more &rsaquo;</a>
     </div>
   </div>
 </main>
 <footer>
-  <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</div>
-  <div class="footer-mid">
+  <div class="bg-blue-900 text-white text-center py-3.5 font-medium mt-2.5 cursor-pointer transition-colors hover:bg-blue-800" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</div>
+  <div class="bg-gray-800 text-gray-300 px-16 py-10 grid grid-cols-4 gap-7.5">
     <div class="footer-col">
-      <h4>Get to Know Us</h4>
-      <ul>
-        <li onclick="showToast('Opening Careers...','info')">Careers</li>
-        <li onclick="showToast('Opening Blog...','info')">Blog</li>
-        <li onclick="showToast('Opening About Amazon...','info')">About Amazon</li>
-        <li onclick="showToast('Opening Investor Relations...','info')">Investor Relations</li>
-        <li onclick="showToast('Opening Amazon Devices...','info')">Amazon Devices</li>
+      <h4 class="text-white mb-3 text-base font-bold">Get to Know Us</h4>
+      <ul class="list-none">
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Careers...','info')">Careers</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Blog...','info')">Blog</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening About Amazon...','info')">About Amazon</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Investor Relations...','info')">Investor Relations</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Amazon Devices...','info')">Amazon Devices</li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Make Money with Us</h4>
-      <ul>
-        <li onclick="showToast('Opening Seller Central...','info')">Sell on Amazon</li>
-        <li onclick="showToast('Opening Accelerator...','info')">Amazon Accelerator</li>
-        <li onclick="showToast('Opening Global Selling...','info')">Global Selling</li>
-        <li onclick="showToast('Opening Affiliate...','info')">Become an Affiliate</li>
-        <li onclick="showToast('Opening FBA...','info')">Fulfilment by Amazon</li>
+      <h4 class="text-white mb-3 text-base font-bold">Make Money with Us</h4>
+      <ul class="list-none">
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Seller Central...','info')">Sell on Amazon</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Accelerator...','info')">Amazon Accelerator</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Global Selling...','info')">Global Selling</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Affiliate...','info')">Become an Affiliate</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening FBA...','info')">Fulfilment by Amazon</li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Amazon Payment Products</h4>
-      <ul>
-        <li onclick="showToast('Opening Amazon Pay...','info')">Amazon Pay</li>
-        <li onclick="showToast('Opening UPI...','info')">Amazon Pay UPI</li>
-        <li onclick="showToast('Opening Rewards Card...','info')">Amazon Rewards Visa</li>
-        <li onclick="showToast('Opening Points...','info')">Shop with Points</li>
-        <li onclick="showToast('Opening Balance...','info')">Reload Your Balance</li>
+      <h4 class="text-white mb-3 text-base font-bold">Amazon Payment Products</h4>
+      <ul class="list-none">
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Amazon Pay...','info')">Amazon Pay</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening UPI...','info')">Amazon Pay UPI</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Rewards Card...','info')">Amazon Rewards Visa</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Points...','info')">Shop with Points</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Balance...','info')">Reload Your Balance</li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Let Us Help You</h4>
-      <ul>
-        <li onclick="openSignIn()">Your Account</li>
-        <li onclick="showToast('Opening Returns...','info')">Returns Centre</li>
-        <li onclick="showToast('Opening Protection...','info')">100% Purchase Protection</li>
-        <li onclick="showToast('Opening App...','info')">Amazon App Download</li>
-        <li onclick="showToast('Opening Help...','info')">Help</li>
+      <h4 class="text-white mb-3 text-base font-bold">Let Us Help You</h4>
+      <ul class="list-none">
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="openSignIn()">Your Account</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Returns...','info')">Returns Centre</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Protection...','info')">100% Purchase Protection</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening App...','info')">Amazon App Download</li>
+        <li class="mb-1.75 text-sm cursor-pointer transition-colors hover:text-white hover:underline" onclick="showToast('Opening Help...','info')">Help</li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="footer-logo-text">amazon<span>.in</span></div>
-    <div class="footer-links">
-      <a href="#" onclick="showToast('Opening Conditions...','info');return false;">Conditions of Use &amp; Sale</a>
-      <a href="#" onclick="showToast('Opening Privacy...','info');return false;">Privacy Notice</a>
-      <a href="#" onclick="showToast('Opening Ads Notice...','info');return false;">Interest-Based Ads</a>
+  <div class="bg-gray-900 text-gray-300 text-center py-5.5 text-xs flex flex-col items-center gap-2.5">
+    <div class="text-2xl font-black text-white">amazon<span class="text-orange-400">.in</span></div>
+    <div class="flex gap-0 flex-wrap justify-center">
+      <a href="#" class="text-gray-300 text-xs border-r border-gray-700 px-3.5" onclick="showToast('Opening Conditions...','info');return false;">Conditions of Use &amp; Sale</a>
+      <a href="#" class="text-gray-300 text-xs border-r border-gray-700 px-3.5" onclick="showToast('Opening Privacy...','info');return false;">Privacy Notice</a>
+      <a href="#" class="text-gray-300 text-xs px-3.5" onclick="showToast('Opening Ads Notice...','info');return false;">Interest-Based Ads</a>
     </div>
     <div>© 1996–2026, Amazon.com, Inc. or its affiliates. All Rights Reserved.</div>
   </div>
 </footer>
-<div class="cart-overlay" id="cartOverlay"></div>
-<aside class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header">
+<div class="fixed inset-0 bg-black bg-opacity-50 z-900 opacity-0 pointer-events-none transition-opacity" id="cartOverlay"></div>
+<aside class="fixed top-0 right-0 w-96 max-w-full h-screen bg-white z-901 transform translate-x-full transition-transform duration-350 flex flex-col shadow-left" id="cartSidebar">
+  <div class="bg-gray-900 text-white px-5 py-4 flex items-center justify-between text-base font-bold">
     <span><i class="fa fa-shopping-cart"></i> Your Cart</span>
-    <button onclick="closeCart()">&times;</button>
+    <button class="bg-none border-none text-white text-2xl leading-none px-1 transition-colors hover:text-orange-400" onclick="closeCart()">&times;</button>
   </div>
-  <div class="cart-body" id="cartBody"></div>
-  <div class="cart-footer" id="cartFooter" style="display:none;">
-    <div class="cart-total" id="cartTotal"></div>
-    <button class="checkout-btn" onclick="checkout()"><i class="fa fa-lock"></i> Proceed to Checkout</button>
+  <div class="flex-1 overflow-y-auto px-4" id="cartBody"></div>
+  <div class="px-4 py-4 border-t border-gray-300 bg-gray-100 hidden" id="cartFooter">
+    <div class="text-base font-bold mb-3.5" id="cartTotal"></div>
+    <button class="w-full bg-orange-400 border-none py-3 text-base font-bold rounded transition-colors hover:bg-orange-500 text-gray-900" onclick="checkout()"><i class="fa fa-lock"></i> Proceed to Checkout</button>
   </div>
 </aside>
-<div class="modal-overlay" id="productModal" role="dialog">
-  <div class="modal-box">
-    <div class="modal-header">
-      <span style="font-weight:bold;font-size:15px;">Product Details</span>
-      <button class="modal-close" onclick="closeProductModal()">&times;</button>
+<div class="fixed inset-0 bg-black bg-opacity-55 z-800 opacity-0 pointer-events-none transition-opacity flex items-center justify-center p-5" id="productModal" role="dialog">
+  <div class="bg-white rounded-lg max-w-3xl w-full max-h-90vh overflow-y-auto transform scale-92 transition-transform shadow-2xl">
+    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-300 sticky top-0 bg-white z-10">
+      <span class="font-bold text-sm">Product Details</span>
+      <button class="bg-none border border-gray-300 w-8 h-8 rounded-full text-base flex items-center justify-center transition-colors hover:bg-gray-200" onclick="closeProductModal()">&times;</button>
     </div>
-    <div class="modal-body"></div>
+    <div class="p-6 grid grid-cols-65px-1fr gap-6"></div>
   </div>
 </div>
-<div class="signin-modal" id="signinModal" role="dialog">
-  <div class="signin-box">
-    <div class="signin-close-row"><button class="signin-close-btn" onclick="closeSignIn()">&times;</button></div>
-    <div class="signin-logo">amazon<span>.in</span></div>
-    <h2>Sign in</h2>
+<div class="fixed inset-0 bg-black bg-opacity-50 z-850 flex items-center justify-center p-5 opacity-0 pointer-events-none transition-opacity" id="signinModal" role="dialog">
+  <div class="bg-white rounded-lg p-8 w-full max-w-xs border border-gray-300 shadow-lg transform translate-y-5 transition-transform">
+    <div class="text-right mb-2"><button class="bg-none border-none text-xl text-gray-600" onclick="closeSignIn()">&times;</button></div>
+    <div class="text-center text-3xl font-black mb-1.5">amazon<span class="text-orange-400">.in</span></div>
+    <h2 class="text-2xl mb-4.5 text-center">Sign in</h2>
     <form onsubmit="handleSignIn(event)">
-      <label for="signinEmail">Email or mobile number</label>
-      <input type="text" id="signinEmail" placeholder="Email or mobile number"/>
-      <label for="signinPass">Password</label>
-      <input type="password" id="signinPass" placeholder="Password"/>
-      <button type="submit" class="signin-submit">Sign in</button>
+      <label for="signinEmail" class="text-xs font-bold block mb-1">Email or mobile number</label>
+      <input type="text" id="signinEmail" placeholder="Email or mobile number" class="w-full border border-gray-600 rounded px-2.5 py-2 text-sm mb-3.5 outline-none transition-all hover:border-orange-400 focus:border-orange-500 focus:shadow-orange-focus"/>
+      <label for="signinPass" class="text-xs font-bold block mb-1">Password</label>
+      <input type="password" id="signinPass" placeholder="Password" class="w-full border border-gray-600 rounded px-2.5 py-2 text-sm mb-3.5 outline-none transition-all hover:border-orange-400 focus:border-orange-500 focus:shadow-orange-focus"/>
+      <button type="submit" class="w-full bg-orange-400 border-none py-2.5 text-sm font-bold rounded mb-3.5 text-gray-900 transition-colors hover:bg-orange-500">Sign in</button>
     </form>
-    <p style="font-size:11px;color:#555;text-align:center;margin-bottom:12px;">
-      By signing in you agree to Amazon's <a href="#" style="color:#007185;">Conditions of Use</a> and <a href="#" style="color:#007185;">Privacy Notice</a>.
+    <p class="text-xs text-gray-700 text-center mb-3">
+      By signing in you agree to Amazon's <a href="#" class="text-teal-700">Conditions of Use</a> and <a href="#" class="text-teal-700">Privacy Notice</a>.
     </p>
-    <div class="signin-divider">New to Amazon?</div>
-    <div class="signin-new" style="margin-top:10px;">
-      <a href="#" onclick="closeSignIn();showToast('Opening account creation...','info');return false;">Create your Amazon account</a>
+    <div class="text-center text-xs text-gray-600 relative my-3"><span class="relative z-1 bg-white px-2">New to Amazon?</span></div>
+    <div class="text-center text-xs text-gray-600 mt-2.5">
+      <a href="#" class="text-teal-700" onclick="closeSignIn();showToast('Opening account creation...','info');return false;">Create your Amazon account</a>
     </div>
   </div>
 </div>
-<div class="toast" id="toast" role="alert"></div>
+<div class="fixed bottom-7.5 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-7 py-3 rounded text-sm font-bold z-1000 pointer-events-none transition-all transform translate-y-22 shadow-md" id="toast" role="alert"></div>
 <script src="script.js"></script>
 </body>
 </html>
